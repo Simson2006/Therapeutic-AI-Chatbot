@@ -1,6 +1,6 @@
 # Therapist Chatbot
 
-A conversational AI chatbot designed to provide helpful, empathetic, and context-aware responses. The chatbot is trained on therapist-style data and uses natural language processing (NLP) techniques combined with deep learning to understand user queries and provide appropriate responses.
+A conversational AI chatbot designed to provide helpful, empathetic, and context-aware responses. The chatbot is trained on therapist-style data and uses natural language processing (NLP) techniques combined with a **deep learning model (ANN)** to understand user queries and provide appropriate responses.
 
 ---
 
@@ -20,25 +20,25 @@ This project demonstrates how to build a simple AI chatbot that can interact wit
      - Normalization (lowercasing, removing punctuation)
 
 3. **Converting Words to Vectors**:  
-   - Text data is converted into numerical vectors using **TF-IDF, CountVectorizer, or Word2Vec**.  
-   - Vectorization allows the deep learning model to understand and learn patterns from the text.
+   - Text is converted into numerical vectors using a **Bag of Words (BoW) implementation**, allowing the ANN model to process and understand the input.
 
-4. **Model Training**:  
-   - A deep learning model (`model_dl.h5`) is trained using the processed dataset.
-   - `chatbot_model_training.ipynb` notebook is used for creating and training this model.
+4. **Model Training (ANN)**:  
+   - A deep learning **Artificial Neural Network (ANN)** is trained to classify user queries into intents.  
+   - The model achieves **about 90% accuracy** on the training and validation datasets.  
+   - Training is done in `chatbot_model_training.ipynb`.
 
 5. **Response Generation**:  
-   - Once the model predicts the intent of a user query, the chatbot selects an appropriate response from the dataset.
+   - Once the ANN predicts the intent of a user query, the chatbot selects an appropriate response from the dataset.
 
 6. **Web Interface (Streamlit)**:  
-   - `app.py` contains the **Streamlit app** for the chatbot interface.
+   - `app.py` contains the **Streamlit app** for the chatbot interface.  
    - Users can type questions, and the chatbot responds instantly in the browser.
 
 7. **Preprocessing New Queries**:  
    - `preprocess.py` module processes new text entered by the user:
-     - Tokenizes and cleans the input
-     - Converts words to vectors using the saved vectorizer
-     - Prepares data for the model to predict the intent
+     - Cleans and tokenizes the input
+     - Converts it into a vector using **Bag of Words**
+     - Prepares data for the ANN to predict the intent
 
 ---
 
@@ -48,12 +48,12 @@ This project demonstrates how to build a simple AI chatbot that can interact wit
 |-----------|---------|
 | `all_words.pkl` | Contains all words from the dataset for indexing and vectorization. |
 | `tags.pkl` | Contains all intent tags from the dataset for mapping predictions to responses. |
-| `model_dl.h5` | Trained deep learning model for intent classification. |
+| `model_dl.h5` | Trained **ANN deep learning model** for intent classification (~90% accuracy). |
 | `intent.json` | Therapy-related dataset for training. |
-| `intents.json` | Someother related dataset for training.(for training with more words)|
-| `chatbot_model_training.ipynb` | Jupyter notebook used to create and train the deep learning model. |
+| `intents.json` | College-related dataset for training. |
+| `chatbot_model_training.ipynb` | Jupyter notebook used to create and train the ANN model. |
 | `app.py` | Streamlit app file that runs the interactive chatbot interface. |
-| `preprocess.py` | Module to preprocess and vectorize new user input before passing it to the model. |
+| `preprocess.py` | Module to preprocess and vectorize new user input using **Bag of Words** before passing it to the model. |
 | `utils/` | Helper scripts for preprocessing, tokenization, and other functions. |
 
 ---
@@ -61,10 +61,8 @@ This project demonstrates how to build a simple AI chatbot that can interact wit
 ## 🎯 Features
 
 - Conversational AI for therapy and college-related queries.
-- Converts words to vectors using NLP techniques (TF-IDF, CountVectorizer, Word2Vec).
+- Converts words to vectors manually using **Bag of Words (BoW)**.
+- **Artificial Neural Network (ANN)** for intent classification with ~90% accuracy.
 - Preprocessing includes tokenization, stopwords removal, and text normalization.
-- Deep learning model for intent classification.
 - Interactive Streamlit interface for real-time chatting.
 - Easily extendable with new intents and datasets.
-
----
